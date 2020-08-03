@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
 
-const Color orangeColor = Color(0xFFFBC02D);
-const Color whiteColor = Color(0xFFEEEEEE);
-const Color greyColor = Color(0xFF3A4750);
-
-var h = Colors.yellow;
-
-const TextStyle calcTextStyle = TextStyle(
-    fontSize: 30,
-    color: Color(0xFF3A4750),
-    fontWeight: FontWeight.w500
-);
-
-const TextStyle resultTextStyle = TextStyle(
-  fontSize: 55,
-  color: Color(0xFFF6C90E),
-  fontWeight: FontWeight.w700,
-);
-
+const Color orange = Color(0xFFffd23f);
+const Color highLightOrange = Color(0xFFffed66);
+const Color white = Color(0xFFf7fff7);
+const Color highLightWhite = Color(0xFFffffea);
+const Color grey = Color(0xFF555b6e);
+const Color highLightGrey = Color(0xFF577590);

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:provider/provider.dart';
 import 'package:claculator/widgets/buttons.dart';
-import 'package:claculator/constants.dart';
 import 'package:claculator/functions.dart';
+import 'package:claculator/constants.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,21 +12,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  Map<String, List> marks = {
+    'Row1': ['C','%','/','<<'],
+    'Row2': ['7','8','9','x'],
+    'Row3': ['4','5','6','−'],
+    'Row4': ['1','2','3','+'],
+  };
+
   @override
   Widget build(BuildContext context) {
-
-    Map<String, List> marks = {
-      'Row1': ['C','%','/','X'],
-      'Row2': ['7','8','9','*'],
-      'Row3': ['4','5','6','-'],
-      'Row4': ['1','2','3','+'],
-      'Row5': ['0','.'],
-    };
     ScreenScaler _scaler = ScreenScaler()..init(context);
+    Functions data = context.watch<Functions>();
 
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      backgroundColor: whiteColor,
+      backgroundColor: white,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -37,21 +38,20 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   AutoSizeText(
-                    '123+45678*901234',
-                    maxLines: 1,
+                    '${data.calc}',
                     style: TextStyle(
                         fontSize: _scaler.getTextSize(15),
-                        color: greyColor,
+                        color: grey,
                         fontWeight: FontWeight.w500
                     ),
                   ),
                   SizedBox(height: 10,width: double.maxFinite,),
                   AutoSizeText(
-                    '2546',
+                    '${data.result}',
                     maxLines: 1,
                     style: TextStyle(
-                      fontSize: _scaler.getTextSize(22),
-                      color: orangeColor,
+                      fontSize: _scaler.getTextSize(23),
+                      color: orange,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -63,16 +63,15 @@ class _HomeState extends State<Home> {
             flex: 3,
             child: Column(
               children: <Widget>[
-                RowButton(marks['Row1']),
-                RowButton(marks['Row2']),
-                RowButton(marks['Row3']),
-                RowButton(marks['Row4']),
+                ButtonsRow(marks['Row1']),
+                ButtonsRow(marks['Row2']),
+                ButtonsRow(marks['Row3']),
+                ButtonsRow(marks['Row4']),
                 Flexible(
                   child: Row(
                     children: <Widget>[
-                      MyButton(mark: marks['Row5'][0],),
-                      MyButton(mark: marks['Row5'][1],),
-                      CalcButton(),
+                        LargeButton(mark: '0',color: grey,highLightColor: highLightGrey,),
+                      LargeButton(mark: '=',color: orange,highLightColor: highLightOrange,),
                     ],
                   ),
                 ),
@@ -87,8 +86,5 @@ class _HomeState extends State<Home> {
 
 
 
-
-// rounded outline
-// result text is big in small device
 
 

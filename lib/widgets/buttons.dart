@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:provider/provider.dart';
+import 'package:claculator/functions.dart';
 import 'package:claculator/constants.dart';
 
-class CalcButton extends StatelessWidget {
+class LargeButton extends StatelessWidget {
+  final String mark;
+  final Color color;
+  final Color highLightColor;
+  LargeButton({this.mark,this.color,this.highLightColor});
+
   @override
   Widget build(BuildContext context) {
     ScreenScaler _scaler = ScreenScaler()..init(context);
     return Expanded(
       flex: 2,
       child: FlatButton(
-        onPressed: () {},
-        color: orangeColor,
+        onPressed: () => context.read<Functions>().buttonPressed(mark),
+        shape: RoundedRectangleBorder(),
+        color: color,
+        splashColor: highLightColor,
+        highlightColor: highLightColor,
         child: Center(
             child: Text(
-              '=',
+              mark,
               style: TextStyle(
-                fontSize: _scaler.getTextSize(15),
-                color: greyColor,
+                fontFamily: 'Mukta',
+                fontWeight: FontWeight.w600,
+                fontSize: _scaler.getTextSize(16),
+                color: white,
               ),
             )),
       ),
@@ -24,44 +36,48 @@ class CalcButton extends StatelessWidget {
   }
 }
 
-class RowButton extends StatelessWidget {
+class ButtonsRow extends StatelessWidget {
   final List marks;
-  RowButton(this.marks);
+  ButtonsRow(this.marks);
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       child: Row(
         children: <Widget>[
-          MyButton(mark: marks[0],),
-          MyButton(mark: marks[1],),
-          MyButton(mark: marks[2],),
-          MyButton(mark: marks[3],),
+          DefaultButton(mark: marks[0],),
+          DefaultButton(mark: marks[1],),
+          DefaultButton(mark: marks[2],),
+          DefaultButton(mark: marks[3],),
         ],
       ),
     );
   }
 }
 
-class MyButton extends StatelessWidget {
+class DefaultButton extends StatelessWidget {
   final String mark;
-  MyButton({@required this.mark});
+  DefaultButton({@required this.mark});
 
   @override
   Widget build(BuildContext context) {
     ScreenScaler _scaler = ScreenScaler()..init(context);
+
     return Flexible(
       child: OutlineButton(
-        onPressed: () {},
+        onPressed: () => context.read<Functions>().buttonPressed(mark),
         shape: RoundedRectangleBorder(),
         borderSide: BorderSide(width: 0.03),
-        highlightColor: const Color(0xFFF6F4EB),
+        highlightColor: highLightWhite,
+        splashColor: highLightWhite,
         child: Center(
             child: Text(
               mark,
               style: TextStyle(
-                fontSize: _scaler.getTextSize(15),
-                color: greyColor,
+                fontFamily: 'Cairo',
+                fontWeight: FontWeight.w500,
+                fontSize: _scaler.getTextSize(16),
+                color: grey,
               ),
             )),
       ),

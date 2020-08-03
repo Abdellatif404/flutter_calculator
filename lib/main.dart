@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:device_simulator/device_simulator.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:claculator/home.dart';
+import 'package:claculator/functions.dart';
 import 'package:claculator/constants.dart';
 
-void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+void main() => runApp(Calculator());
+
+class Calculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
       title: 'Calculator',
-      theme: ThemeData(
-        primaryColor: orangeColor,
-      ),
+      theme: ThemeData(primaryColor: orange),
       debugShowCheckedModeBanner: false,
-      home: DeviceSimulator(
-        enable: false,
+      home: ChangeNotifierProvider(
+        create: (context) => Functions(),
         child: Home(),
       ),
     );
