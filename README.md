@@ -1,6 +1,6 @@
-# claculator
+# ÷/x Simple Calculator App
 
-A new Flutter project.
+A calculator app built with flutter
 
 ## Getting Started
 
