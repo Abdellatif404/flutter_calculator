@@ -2,5 +2,4 @@
 
 A calculator app built with flutter
 
-
-![](images/snapshot.png =150x150)
+<img src="images/snapshot.png" width="40%">
