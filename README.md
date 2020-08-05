@@ -3,4 +3,4 @@
 A calculator app built with flutter
 
 
-![](images/snapshot.png)
+![](images/snapshot.png =150x150)
